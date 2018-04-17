@@ -1,6 +1,6 @@
 # -*- coding:utf-8  -*-
 
-import sys, requests, bs4, pandas, html5lib, re, csv
+import os, sys, requests, bs4, pandas, html5lib, re, csv
 
 """https://syllabus.naist.jp/subjects/preview_detail/[番号]"""
 oriUrl = 'https://syllabus.naist.jp/subjects/preview_detail/'
@@ -8,8 +8,67 @@ oriUrl = 'https://syllabus.naist.jp/subjects/preview_detail/'
 table = [['Subject', 'Start Date', 'Start Time', 'End Date', 'End Time']]
 
 """[番号]:名前の対応"""
-dict = {19:"JohoRikogaku", 20:"JohoSeimei", 25:"DataScience", 26:"KeishikiGengo", 33:"KouseinouKeisanKiban",
-		34:"SoftwareSekkeiron"}
+dict = {19:"JohoRikogakuJoron",
+		20:"JohoSeimeiJoron",
+		21:"BioScienceJoron",
+		22:"BionanoRikogakuJoron",
+		23:"BussituRikogakuJoron",
+		24:"ChonouSyakaiSouseiJoron",
+		25:"DataScienceJoron",
+		26:"KeishikiGengo",
+		27:"PurogrammingEnsyu",
+		28:"SingouSyori",
+		29:"OuyouKaisekigaku",
+		30:"DataKougakuKiso",
+		31:"KikaiGakusyuGairon",
+		32:"Kougaku",
+		33:"KouseinouKeisanKiban",
+		34:"SoftwareSekkeiron",
+		35:"JinkouChinou",
+		56:"BunsanComputingron",
+		57:"AlgorithmSekkeiron",
+		58:"UbiquitousSystem",
+		59:"MobileComputingron",
+		60:"KasoukaSystemKiban",
+		61:"SoftwareKougaku",
+		62:"InternetKougaku",
+		63:"ComputerNetwork",
+		64:"KankyouChinou",
+		65:"SizenGengoSyori",
+		66:"VirtualReality",
+		67:"ComputerVision",
+		68:"ComputerGraphics",
+		69:"MediaJohoSyori",
+		70:"MusenTsushinSystem",
+		71:"ShingouKensyutsuRiron"
+		72:"HumanComputerInteraction",
+		73:"PatternNinshiki",
+		74:"SyakaiSystemRiron",
+		75:"KikaigakusyuToChinouseigyo",
+		76:"ModelBaseSeigyo",
+		77:"NingenRobotJohogaku",
+		78:"SuriModelRon",
+		80:"DataMining",
+		81:"SeitaiIyouGazouKaiseki",
+		82:"SeitaiIyouMediaJohogaku",
+		#83:"DataScienceRon",
+		88:"OtoJohoSyori",
+		89:"KeiretsuDataModelling",
+		90:"Robotics",
+		91:"GendaiJohoSecurityRon",
+		92:"JohoRiron",
+		93:"HardwareSecurity",
+		94:"FugoRiron",
+		95:"KakuritsuKateiron",
+		96:"KeisanShinkeiKagaku",
+		97:"JohoSecurityUnyouLiteracy1",
+		98:"JohoSecurityUnyouLiteracy2"
+		102:"SaitekikaSugaku",
+		103:"DataKaiseki"
+		}
+
+"""出力するcsvのファイル名"""
+filename = 'schedule.csv'
 
 args = sys.argv
 
@@ -36,8 +95,6 @@ for i in range(1,len(args)):
 		startDate = month + '/' + day + '/' + year
 		endDate = startDate
 
-		#print(elem)
-
 		if elem[2] == '1':
 			startTime = '9:20 AM'
 			endTime = '10:50 AM'
@@ -57,8 +114,8 @@ for i in range(1,len(args)):
 			startTime = '6:30 PM'
 			endTime = '8:00 PM'
 		else:
-			startTime = ' '
-			endTime = ' '
+			startTime = 'unknown'
+			endTime = 'unknown'
 
 		subject = dict[int(args[i])]
 
@@ -66,12 +123,9 @@ for i in range(1,len(args)):
 
 		table.append(sche)
 
-		#print(table)
-
-#print(table)
-
-"""出力するcsvのファイル名"""
-f = open('schedule.csv', 'ab')
+f = open(filename, 'ab')
 dataWriter = csv.writer(f)
 dataWriter.writerows(table)
+
+print('output:' + os.path.dirname(os.path.abspath(__file__)) + '/' + filename)
 
