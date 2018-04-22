@@ -93,7 +93,7 @@ for i in range(1,len(args)):
 		month = elem[0].zfill(2)
 		day = elem[1].zfill(2)
 
-		if 1 <= elem[0] and elem[0] <= 3:
+		if 1 <= int(elem[0]) and int(elem[0]) <= 3:
 			year = '2019'
 		else:
 			year = '2018'
