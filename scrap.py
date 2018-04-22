@@ -8,7 +8,9 @@ oriUrl = 'https://syllabus.naist.jp/subjects/preview_detail/'
 table = [['Subject', 'Start Date', 'Start Time', 'End Date', 'End Time']]
 
 """[番号]:名前の対応"""
-dict = {19:"JohoRikogakuJoron",
+dict = {
+		2:"KagakuTetsugaku",
+		19:"JohoRikogakuJoron",
 		20:"JohoSeimeiJoron",
 		21:"BioScienceJoron",
 		22:"BionanoRikogakuJoron",
@@ -40,7 +42,7 @@ dict = {19:"JohoRikogakuJoron",
 		68:"ComputerGraphics",
 		69:"MediaJohoSyori",
 		70:"MusenTsushinSystem",
-		71:"ShingouKensyutsuRiron"
+		71:"ShingouKensyutsuRiron",
 		72:"HumanComputerInteraction",
 		73:"PatternNinshiki",
 		74:"SyakaiSystemRiron",
@@ -62,7 +64,7 @@ dict = {19:"JohoRikogakuJoron",
 		95:"KakuritsuKateiron",
 		96:"KeisanShinkeiKagaku",
 		97:"JohoSecurityUnyouLiteracy1",
-		98:"JohoSecurityUnyouLiteracy2"
+		98:"JohoSecurityUnyouLiteracy2",
 		102:"SaitekikaSugaku",
 		103:"DataKaiseki"
 		}
@@ -90,7 +92,11 @@ for i in range(1,len(args)):
 
 		month = elem[0].zfill(2)
 		day = elem[1].zfill(2)
-		year = '2018'
+
+		if 1 <= elem[0] and elem[0] <= 3:
+			year = '2019'
+		else:
+			year = '2018'
 
 		startDate = month + '/' + day + '/' + year
 		endDate = startDate
