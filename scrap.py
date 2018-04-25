@@ -1,6 +1,13 @@
 # -*- coding:utf-8  -*-
 
-import os, sys, requests, bs4, pandas, html5lib, re, csv
+import os
+import sys
+import requests
+import bs4
+import pandas
+import html5lib
+import re
+import csv
 
 """https://syllabus.naist.jp/subjects/preview_detail/[番号]"""
 oriUrl = 'https://syllabus.naist.jp/subjects/preview_detail/'
